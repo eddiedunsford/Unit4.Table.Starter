@@ -1,0 +1,22 @@
+Table Restaurant {
+  id            Int     [pk, increment]
+  name          String
+  reservations  Reservation[]
+}
+
+Table Reservation {
+  id          Int [pk, increment]
+  date        String
+  restaurant  Restaurant
+  party   Customer[]
+}
+
+Table Customer {
+  id            Int [pk, increment]
+  name          String
+  email         String
+  reservations  Reservation[]
+}
+
+ref: Restaurant.reservations < Reservation.restaurant
+ref: Reservation.party <> Customer.reservations

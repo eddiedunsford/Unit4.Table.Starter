@@ -1,0 +1,11 @@
+@host = http://localhost:3000
+
+### Make a reservation to restaurant #3 with customers #1, #2, and #3
+POST {{host}}/reservations
+Content-Type: application/json
+
+{
+  "date": "Today @ 6pm",
+  "restaurantId": 3,
+  "customerIds": [1,2,3]
+}
