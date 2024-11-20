@@ -14,3 +14,26 @@ datasource db {
 }
 
 // TODO: define models
+ model Playlist {
+  id        Int           @id @default(autoincrement())
+  name      String
+  tracks    PlaylistTrack[]
+}
+
+model Track {
+  id        Int           @id @default(autoincrement())
+  name      String
+  artist    String
+  duration  Int
+  playlists PlaylistTrack[]
+}
+
+model PlaylistTrack {
+  playlistId Int
+  trackId    Int
+
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  track      Track    @relation(fields: [trackId], references: [id])
+
+  @@id([playlistId, trackId]) // Composite primary key
+}
